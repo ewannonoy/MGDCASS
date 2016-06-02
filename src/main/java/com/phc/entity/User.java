@@ -1,4 +1,4 @@
-package phc.entity;
+package com.phc.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +9,10 @@ import lombok.Data;
 @Entity
 @Data
 public class User {
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String username;
-	private String firstName;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String username;
+    private String firstName;
 }
