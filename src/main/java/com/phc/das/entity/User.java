@@ -1,4 +1,4 @@
-package com.phc.entity;
+package com.phc.das.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.phc.dto;
+package com.phc.das.dto;
 
 import lombok.Data;
 

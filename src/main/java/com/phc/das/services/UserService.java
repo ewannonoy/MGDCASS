@@ -1,4 +1,4 @@
-package com.phc.services;
+package com.phc.das.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.phc.entity.User;
-import com.phc.repositories.UserRepository;
+import com.phc.das.entity.User;
+import com.phc.das.repositories.UserRepository;
 
 @Service
 public class UserService {
