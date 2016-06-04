@@ -1,4 +1,4 @@
-package com.phc.repositories;
+package com.phc.das.repositories;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.phc.entity.User;
+import com.phc.das.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

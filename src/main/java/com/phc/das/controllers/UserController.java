@@ -1,4 +1,4 @@
-package com.phc.controllers;
+package com.phc.das.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.phc.dto.UserDto;
-import com.phc.entity.User;
-import com.phc.services.UserService;
+import com.phc.das.dto.UserDto;
+import com.phc.das.entity.User;
+import com.phc.das.services.UserService;
 
 @RestController
 @RequestMapping("api/users")

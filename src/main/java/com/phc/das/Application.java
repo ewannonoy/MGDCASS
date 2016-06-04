@@ -1,11 +1,11 @@
-package com.phc;
+package com.phc.das;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
-import com.phc.controllers.MainController;
+import com.phc.das.controllers.MainController;
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
