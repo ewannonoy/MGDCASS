@@ -3,9 +3,10 @@ import { RouteConfig, RouterOutlet } from '@angular/router-deprecated';
 //Project Components
 import { DashboardComponent } from './layout/dashboard.component'; //location is temporary
 import { NavbarTopComponent } from './layout/navbar-top.component';
-
+import { UserComponent } from './users/user.component';
 @RouteConfig([
     { path: '/', name: 'Dashboard', component: DashboardComponent, useAsDefault:true},
+    { path: '/users', name: 'Users', component: UserComponent},
     { path: '/*other', name:'Other', redirectTo: ['Dashboard']},
 ])
 @Component({
