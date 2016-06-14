@@ -6,8 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
+    @RequestMapping(value = "")
+    public String root() {
+        return "redirect:/admin/";
+    }
+
+    @RequestMapping(value = "/admin/**")
+    public String admin() {
+        return "admin/index";
+    }
+
+    @RequestMapping(value = "/normal/**")
+    public String normal() {
+        return "normal/index";
     }
 }
