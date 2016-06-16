@@ -29,7 +29,4 @@ public class Appointment {
     @ManyToOne
     private Branch branch;
 
-    // @OneToMany(targetEntity = Procedure.class)
-    // private List<Procedure> procedures;
-
 }

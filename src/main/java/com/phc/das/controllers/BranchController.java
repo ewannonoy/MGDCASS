@@ -45,16 +45,16 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<List<BranchDto>> createBranch(@RequestBody BranchDto branchDto) {
-        branchService.createBranch(this.convertToEntity(branchDto));
-        return new ResponseEntity<>(this.convertToDto(branchService.getAllBranch()), HttpStatus.OK);
+    public ResponseEntity<BranchDto> createBranch(@RequestBody BranchDto branchDto) {
+        Branch branch = branchService.createBranch(this.convertToEntity(branchDto));
+        return new ResponseEntity<>(this.convertToDto(branch), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<List<BranchDto>> updateBranch(@RequestBody BranchDto branchDto) {
+    public ResponseEntity<BranchDto> updateBranch(@RequestBody BranchDto branchDto) {
         Branch branch = this.convertToEntity(branchDto);
-        branchService.updateBranch(branch);
-        return new ResponseEntity<>(this.convertToDto(branchService.getAllBranch()), HttpStatus.OK);
+        branch = branchService.updateBranch(branch);
+        return new ResponseEntity<>(this.convertToDto(branch), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

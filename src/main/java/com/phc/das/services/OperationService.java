@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.phc.das.entity.Appointment;
 import com.phc.das.entity.Operation;
 import com.phc.das.repositories.OperationRepository;
 
@@ -17,6 +18,10 @@ public class OperationService {
 
     public List<Operation> getAllOperation() {
         return operationRepository.findAll();
+    }
+
+    public List<Operation> getOperationsByAppointment(Appointment appointment) {
+        return operationRepository.findByAppointment(appointment);
     }
 
     public Optional<Operation> getById(Long id) {

@@ -14,7 +14,9 @@ public class AppointmentDto {
     private LocalDateTime endTime;
     private String remarks;
     private String encodedBy;
-    private List<OperationDto> procedures;
+    private Long branchId;
+    private String branchName;
+    private List<OperationDto> operations;
 
 
 }

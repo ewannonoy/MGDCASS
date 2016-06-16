@@ -46,20 +46,16 @@ public class OperationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<List<OperationDto>> createOperation(
-            @RequestBody OperationDto operationDto) {
-        operationService.createOperation(this.convertToEntity(operationDto));
-        return new ResponseEntity<>(this.convertToDto(operationService.getAllOperation()),
-                HttpStatus.OK);
+    public ResponseEntity<OperationDto> createOperation(@RequestBody OperationDto operationDto) {
+        Operation operation = operationService.createOperation(this.convertToEntity(operationDto));
+        return new ResponseEntity<>(this.convertToDto(operation), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<List<OperationDto>> updateOperation(
-            @RequestBody OperationDto operationDto) {
+    public ResponseEntity<OperationDto> updateOperation(@RequestBody OperationDto operationDto) {
         Operation operation = this.convertToEntity(operationDto);
-        operationService.updateOperation(operation);
-        return new ResponseEntity<>(this.convertToDto(operationService.getAllOperation()),
-                HttpStatus.OK);
+        operation = operationService.updateOperation(operation);
+        return new ResponseEntity<>(this.convertToDto(operation), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
