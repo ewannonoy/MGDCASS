@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router, RouterLink } from '@angular/router-deprecated';
 //Project Components
 import { SpinnerComponent } from '../shared/spinner.component';
+import { User } from '../users/user.model'
 
 @Component({
     templateUrl: './app/users/user.component.html',
-    directives: [SpinnerComponent],
+    directives: [SpinnerComponent, RouterLink],
 })
 export class UserComponent implements OnInit{
 
+    user: User[]; 
     isUsersLoading: Boolean;
 
     constructor(
