@@ -21,18 +21,15 @@ public class UserService {
     }
 
     public Optional<User> getById(Long id) {
-        System.out.println(userRepository.findSampleQuery("ewan"));
         return userRepository.findById(id);
     }
 
-    public User createUser() {
-        User user = new User();
-//        user.setFirstName("nonoy");
-//        user.setUsername("ewan");
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
     public User updateUser(User user) {
+        // TODO merge
         return userRepository.save(user);
     }
 

@@ -45,13 +45,14 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<List<UserDto>> createUser() {
-        userService.createUser();
+    public ResponseEntity<List<UserDto>> createUser(@RequestBody UserDto userDto) {
+        userService.createUser(this.convertToEntity(userDto));
         return new ResponseEntity<>(this.convertToDto(userService.getAllUser()), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<List<UserDto>> updateUser(@RequestBody User user) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<List<UserDto>> updateUser(@RequestBody UserDto userDto) {
+        User user = this.convertToEntity(userDto);
         userService.updateUser(user);
         return new ResponseEntity<>(this.convertToDto(userService.getAllUser()), HttpStatus.OK);
     }
@@ -80,6 +81,11 @@ public class UserController {
             userDtos.add(this.convertToDto(user));
         }
         return userDtos;
+    }
+
+    private User convertToEntity(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
+        return user;
     }
 }
 
