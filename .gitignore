@@ -5,3 +5,8 @@ src/main/resources/static/node_modules/
 *.js
 *.map
 src/main/resources/static/typings/
+public/node_modules/
+
+# Except
+!gulpfile.js
+!systemjs.config.js
