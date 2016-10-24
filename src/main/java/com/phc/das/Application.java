@@ -2,17 +2,11 @@ package com.phc.das;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
-
-import com.phc.das.controllers.MainController;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MainController.class);
-    }
+@RestController
+public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
