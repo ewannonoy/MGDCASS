@@ -29,6 +29,7 @@ public class User {
     private String middleName;
     private String lastName;
     private String email;
+    private String contactNumber;
     private Boolean enabled;
     private LocalDate birthDate;
     private Boolean isAdmin;
