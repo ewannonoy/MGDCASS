@@ -20,4 +20,10 @@ public class MainController {
     public String normal() {
         return "normal/index";
     }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        System.out.println("LOGIN");
+        return "login/index";
+    }
 }

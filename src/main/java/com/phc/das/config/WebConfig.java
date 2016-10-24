@@ -11,12 +11,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/public/**").addResourceLocations("classpath:/public/");
     }
-
-    // @Bean
-    // public ModelMapper modelMapper() {
-    // ModelMapper mapper = new ModelMapper();
-    // mapper.addMappings(new AppointmentMapper());
-    // return new ModelMapper();
-    //
-    // }
 }
