@@ -23,7 +23,6 @@ public class MainController {
 
     @RequestMapping(value = "/login")
     public String login() {
-        System.out.println("LOGIN");
         return "login/index";
     }
 }
