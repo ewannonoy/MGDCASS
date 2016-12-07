@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import com.phc.das.entity.Authority;
 import com.phc.das.entity.User;
-import com.phc.das.security.model.Authority;
 
 public final class JwtUserFactory {
 
@@ -16,7 +16,7 @@ public final class JwtUserFactory {
     public static JwtUser create(User user) {
         return new JwtUser(user.getId(), user.getUsername(), user.getFirstName(),
                 user.getLastName(), user.getEmail(), user.getPassword(),
-                mapToGrantedAuthorities(user.getAuthorities()), user.getEnabled(),
+                mapToGrantedAuthorities(user.getAuthorities()), user.isEnabled(),
                 user.getLastPasswordResetDate());
     }
 

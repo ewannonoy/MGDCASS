@@ -1,7 +1,7 @@
 package com.phc.das.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import com.phc.das.security.model.Authority;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -23,18 +22,20 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String username;
+    @NotNull
     private String password;
     private String firstName;
     private String middleName;
     private String lastName;
     private String email;
     private String contactNumber;
-    private Boolean enabled;
+    private boolean enabled = true;
     private LocalDate birthDate;
-    private Boolean isAdmin;
     private UserType userType;
-    private Date lastPasswordResetDate;
+    @NotNull
+    private LocalDateTime lastPasswordResetDate;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_AUTHORITY",
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
