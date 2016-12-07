@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.phc.das.entity.User;
 import com.phc.das.security.JwtTokenUtil;
-import com.phc.das.security.JwtUser;
 
 @RestController
 @RequestMapping("api")
@@ -26,10 +26,10 @@ public class LoginUserController {
     private UserDetailsService userDetailsService;
 
     @RequestMapping(value = "login_user", method = RequestMethod.GET)
-    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+    public User getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+        User user = (User) userDetailsService.loadUserByUsername(username);
         return user;
     }
 

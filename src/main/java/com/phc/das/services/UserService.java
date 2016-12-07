@@ -1,8 +1,6 @@
 package com.phc.das.services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.phc.das.entity.Authority;
-import com.phc.das.entity.Authority.AuthorityName;
 import com.phc.das.entity.User;
-import com.phc.das.repositories.AuthorityRepository;
 import com.phc.das.repositories.UserRepository;
 
 @Service
@@ -25,22 +20,13 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private AuthorityRepository authorityRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void createAdmin() {
-        if (authorityRepository.count() == 0) {
-            authorityRepository.save(new Authority(AuthorityName.ROLE_ADMIN));
-            authorityRepository.save(new Authority(AuthorityName.ROLE_USER));
-        }
-
         if (userRepository.count() == 0) {
-            Authority authority = authorityRepository.findByName(AuthorityName.ROLE_ADMIN).get();
             User user = new User();
-            user.setAuthorities(new ArrayList<Authority>(Arrays.asList(authority)));
+            user.setAdmin(true);
             user.setEnabled(true);
             user.setUsername("admin");
             user.setPassword(passwordEncoder.encode("admin"));

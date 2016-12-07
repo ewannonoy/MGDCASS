@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.phc.das.entity.User;
 import com.phc.das.repositories.UserRepository;
-import com.phc.das.security.JwtUserFactory;
 
 /**
  * Created by stephan on 20.03.16.
@@ -26,15 +25,10 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         Optional<User> user = userRepository.findByUsername(username);
 
         if (!user.isPresent()) {
-            if (username.equals("admin")) {
-                User adminUser = new User();
-                return JwtUserFactory.create(adminUser);
-            } else {
-                throw new UsernameNotFoundException(
-                        String.format("No user found with username '%s'.", username));
-            }
+            throw new UsernameNotFoundException(
+                    String.format("No user found with username '%s'.", username));
         } else {
-            return JwtUserFactory.create(user.get());
+            return user.get();
         }
     }
 }
