@@ -12,7 +12,7 @@ public class Branch {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
     private String branchName;
     private String address;
 

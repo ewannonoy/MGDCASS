@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.phc.das.entity.Branch;
 
-public interface BranchRepository extends JpaRepository<Branch, Long> {
+public interface BranchRepository extends JpaRepository<Branch, Integer> {
 
-    Optional<Branch> findById(Long id);
+    Optional<Branch> findById(Integer id);
 }

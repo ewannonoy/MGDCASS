@@ -17,10 +17,10 @@ public class Appointment {
     @Id
     @GeneratedValue
     private Long id;
-    // TODO Generated value
     private String appointmentNo;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    // private LocalDateTime startTime;
+    // private LocalDateTime endTime;
+    private LocalDateTime appointmentDate;
 
     @Column(columnDefinition = "LONGTEXT")
     private String remarks;
@@ -28,5 +28,8 @@ public class Appointment {
 
     @ManyToOne
     private Branch branch;
+
+    @ManyToOne
+    private User customer;
 
 }

@@ -35,7 +35,7 @@ public class BranchController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<BranchDto> getBranch(@PathVariable Long id) throws Exception {
+    public ResponseEntity<BranchDto> getBranch(@PathVariable Integer id) throws Exception {
         Optional<Branch> branch = branchService.getById(id);
         if (!branch.isPresent()) {
             throw new Exception();
@@ -58,7 +58,7 @@ public class BranchController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteBranch(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBranch(@PathVariable Integer id) {
         branchService.deleteBranch(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -3,8 +3,6 @@ package com.phc.das.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +20,6 @@ public class AppointmentService {
 
     @Autowired
     private OperationRepository operationRepository;
-
-    @Autowired
-    private EntityManager entityManager;
 
     public List<Appointment> getAllAppointment() {
         return appointmentRepository.findAll();
@@ -44,6 +39,12 @@ public class AppointmentService {
         return appointment;
     }
 
+    public Appointment createAppointment(Appointment appointment) {
+        appointment.setAppointmentNo(
+                this.createAppointmentNo(appointmentRepository.save(appointment)));
+        return appointmentRepository.save(appointment);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public Appointment updateAppointment(Appointment oldAppointment, Appointment newAppointment,
             List<Operation> operations) {
@@ -59,5 +60,19 @@ public class AppointmentService {
 
     public void deleteAppointment(Long id) {
         appointmentRepository.delete(id);
+    }
+
+    public String createAppointmentNo(Appointment appointment) {
+        final String prefix = "APP";
+        String code = "XX";
+        switch ("") {
+            case "cleaning":
+                code = "CL";
+                break;
+            default:
+                code = "XX";
+        }
+        String appointmentNo = String.format("%s-%07d-%s", prefix, appointment.getId(), code);
+        return appointmentNo;
     }
 }

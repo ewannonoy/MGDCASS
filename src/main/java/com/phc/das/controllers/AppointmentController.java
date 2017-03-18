@@ -1,5 +1,6 @@
 package com.phc.das.controllers;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,8 @@ import com.phc.das.services.AppointmentService;
 import com.phc.das.services.BranchService;
 import com.phc.das.services.OperationService;
 
+import lombok.Data;
+
 @RestController
 @RequestMapping("api/appointments")
 public class AppointmentController {
@@ -42,6 +45,9 @@ public class AppointmentController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<AppointmentDto>> getAppointments() {
+        Appointment a = new Appointment();
+        a.setId(1L);
+        System.out.println(appointmentService.createAppointmentNo(a));
         return new ResponseEntity<>(this.convertToDto(appointmentService.getAllAppointment()),
                 HttpStatus.OK);
     }
@@ -52,17 +58,22 @@ public class AppointmentController {
         if (!appointment.isPresent()) {
             throw new Exception();
         }
-
         return new ResponseEntity<>(this.convertToDto(appointment.get()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<AppointmentDto> createAppointment(
-            @RequestBody AppointmentDto appointmentDto) throws Exception {
-        Appointment newAppointment =
-                appointmentService.createAppointment(this.convertToEntity(appointmentDto),
-                        this.convertOperationToEntity(appointmentDto.getOperations()));
-        return new ResponseEntity<>(this.convertToDto(newAppointment), HttpStatus.OK);
+    public ResponseEntity<Void> createAppointment(@RequestBody CreateAppointmentCommand cmd)
+            throws Exception {
+        Appointment newAppointment = new Appointment();
+        newAppointment.setRemarks(cmd.getRemarks());
+        // newAppointment.setEndTime(cmd.getEndTime());
+        // newAppointment.setStartTime(cmd.getStartTime());
+        newAppointment.setAppointmentDate(
+                ZonedDateTime.parse(cmd.getAppointmentDate()).toLocalDateTime());
+        newAppointment.setBranch(branchService.getById(cmd.getBranchId()).orElse(null));
+        appointmentService.createAppointment(newAppointment);
+        // this.convertOperationToEntity(appointmentDto.getOperations()));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -141,6 +152,16 @@ public class AppointmentController {
     private Operation convertToEntity(OperationDto operationDto) {
         Operation operation = modelMapper.map(operationDto, Operation.class);
         return operation;
+    }
+
+    @Data
+    private static class CreateAppointmentCommand {
+        // private LocalDateTime startTime;
+        // private LocalDateTime endTime;
+        private String appointmentDate;
+        private Integer branchId;
+        private Integer customerId;
+        private String remarks;
     }
 }
 

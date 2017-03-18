@@ -19,7 +19,7 @@ public class BranchService {
         return branchRepository.findAll();
     }
 
-    public Optional<Branch> getById(Long id) {
+    public Optional<Branch> getById(Integer id) {
         return branchRepository.findById(id);
     }
 
@@ -32,7 +32,7 @@ public class BranchService {
         return branchRepository.save(Branch);
     }
 
-    public void deleteBranch(Long id) {
+    public void deleteBranch(Integer id) {
         branchRepository.delete(id);
     }
 }

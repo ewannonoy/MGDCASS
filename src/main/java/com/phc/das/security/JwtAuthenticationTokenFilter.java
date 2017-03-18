@@ -40,7 +40,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String authToken = httpRequest.getHeader(this.tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(authToken);
-
+        // System.out.println(authToken);
         logger.info("checking authentication for user " + username);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -9,7 +9,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,9 +29,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
-    @NotNull
     private String username;
-    @NotNull
     private String password;
     private String firstName;
     private String middleName;
@@ -43,7 +40,6 @@ public class User implements UserDetails {
     private LocalDate birthDate;
     private UserType userType;
     private boolean admin;
-    @NotNull
     private LocalDateTime lastPasswordResetDate;
 
     public enum UserType {
